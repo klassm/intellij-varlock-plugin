@@ -1,4 +1,5 @@
 import org.gradle.jvm.toolchain.JavaLanguageVersion
+import org.jetbrains.intellij.platform.gradle.tasks.VerifyPluginTask
 
 plugins {
     id("java")
@@ -35,8 +36,10 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     // local() exposes the IDE root directory only; sandboxed compilation needs the
-    // split platform module jars explicitly on the classpath.
+    // split platform module jars explicitly on the classpath. Newer IDE layouts
+    // keep them in lib/, older ones in lib/modules/.
     if (ideHome != null) {
+        compileOnly(fileTree("$ideHome/lib") { include("*.jar") })
         compileOnly(fileTree("$ideHome/lib/modules") { include("*.jar") })
     }
 }
@@ -56,9 +59,9 @@ intellijPlatform {
         // The Python integration knowingly uses unstable/internal APIs (the only
         // extension mechanism the Python plugin offers).
         failureLevel = listOf(
-            com.jetbrains.intellij.platform.gradle.VerifierFailureLevel.COMPATIBILITY_WARNINGS,
-            com.jetbrains.intellij.platform.gradle.VerifierFailureLevel.DEPRECATED_API_USAGES,
-            com.jetbrains.intellij.platform.gradle.VerifierFailureLevel.PLUGIN_DEPENDENCIES,
+            VerifyPluginTask.FailureLevel.COMPATIBILITY_WARNINGS,
+            VerifyPluginTask.FailureLevel.DEPRECATED_API_USAGES,
+            VerifyPluginTask.FailureLevel.MISSING_DEPENDENCIES,
         )
         if (ideHome != null) {
             // DMG mounting is blocked in sandboxed builds, so verify against the
