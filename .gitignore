@@ -1,0 +1,10 @@
+.intellijPlatform/
+.kotlin/
+build/
+.gradle/
+.idea/
+.superpowers/
+verification-*/
+.DS_Store
+*.iml
+out/

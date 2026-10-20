@@ -1,0 +1,5 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="JavaScript">
+        <nodeRunConfigurationExtension implementation="dev.varlock.intellij.nodejs.VarlockNodeRunConfigurationExtension"/>
+    </extensions>
+</idea-plugin>

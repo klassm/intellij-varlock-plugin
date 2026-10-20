@@ -1,0 +1,17 @@
+<idea-plugin>
+    <id>dev.varlock.plugin</id>
+    <name>varlock</name>
+    <vendor>varlock</vendor>
+    <description><![CDATA[
+    Run any run configuration wrapped in <code>varlock run --</code> for env resolution, validation and output redaction.
+    ]]></description>
+    <depends>com.intellij.modules.platform</depends>
+    <depends config-file="java.xml" optional="true">com.intellij.modules.java</depends>
+    <depends config-file="nodejs.xml" optional="true">NodeJS</depends>
+    <depends config-file="python.xml" optional="true">com.intellij.modules.python</depends>
+    <extensions defaultExtensionNs="com.intellij">
+        <notificationGroup id="varlock" displayType="BALLOON"/>
+        <projectConfigurable parentId="tools" instance="dev.varlock.intellij.VarlockConfigurable" id="dev.varlock.intellij.settings" displayName="varlock"/>
+        <stepsBeforeRunProvider implementation="dev.varlock.intellij.VarlockBeforeRunTaskProvider"/>
+    </extensions>
+</idea-plugin>

@@ -1,0 +1,6 @@
+<idea-plugin>
+    <!-- Loaded only when a Python plugin (PythonCore/Pythonid) is present. -->
+    <extensions defaultExtensionNs="Pythonid">
+        <pythonCommandLineTargetEnvironmentProvider implementation="dev.varlock.intellij.python.VarlockPythonEnvProvider"/>
+    </extensions>
+</idea-plugin>

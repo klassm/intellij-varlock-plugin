@@ -1,0 +1,6 @@
+<idea-plugin>
+    <!-- Loaded only when the Java plugin (com.intellij.modules.java) is present. -->
+    <extensions defaultExtensionNs="com.intellij">
+        <runConfigurationExtension implementation="dev.varlock.intellij.VarlockRunConfigurationExtension"/>
+    </extensions>
+</idea-plugin>
